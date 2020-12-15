@@ -6,6 +6,8 @@ I spend a ton of time on exfiltration topics and mitigation techniques. This is 
 
 Certexfil has a client and a listener and a module for encoding/encrypting (long term).
 
+More info at https://medium.com/@jeanmichel.amblat/abusing-certificates-for-data-exfiltration-d6bff2533cd0
+
 
 ## Todo
 
