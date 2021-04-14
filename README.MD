@@ -1,3 +1,5 @@
+[![CodeQL](https://github.com/sourcefrenchy/cryptopayload/actions/workflows/codeql-analysis.yml/badge.svg?branch=master)](https://github.com/sourcefrenchy/cryptopayload/actions/workflows/codeql-analysis.yml)
+
 # Exfiltration fun using X509 digital certificates
 
 ## Overview
