@@ -13,6 +13,9 @@ import (
 	"log"
 )
 
+// DEBUG is used for verbose logging
+var DEBUG = false
+
 // Prepare takes care of compressing and encoding a string (payload)
 func Prepare(payloadDat string) string {
 	var buf bytes.Buffer
@@ -20,21 +23,25 @@ func Prepare(payloadDat string) string {
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Printf("Payload  --> %.*s...\t(%d bytes)", 10, payloadDat, len(payloadDat))
-	log.Printf("PayloadPrepared --> %.*s...\t\t(%d bytes)", 10, buf.String(), len(buf.String()))
+	if DEBUG {
+		log.Printf("Payload  --> %.*s...\t(%d bytes)", 10, payloadDat, len(payloadDat))
+		log.Printf("PayloadPrepared --> %.*s...\t\t(%d bytes)", 10, buf.String(), len(buf.String()))
+	}
 	return base64.StdEncoding.EncodeToString([]byte(buf.String()))
 }
 
 // Retrieve takes care of retrieving and decoding a string (payload)
-func Retrieve(payloadDat string) string {
+func Retrieve(payloadDat string) []byte {
 	decoded, _ := base64.StdEncoding.DecodeString(payloadDat)
 	var buf bytes.Buffer
 	err := decompress(&buf, decoded)
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Printf("PayloadRetrieved -->\n%s<--", buf.String())
-	return buf.String()
+	if DEBUG {
+		log.Printf("PayloadRetrieved -->\n%s<--", buf.String())
+	}
+	return []byte(buf.String())
 }
 
 func compress(w io.Writer, data []byte) error {
